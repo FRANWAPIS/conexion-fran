@@ -3,14 +3,12 @@ CREATE TABLE CARGOS(
     id NUMBER PRIMARY KEY,
     nombre VARCHAR2(50)
 );
-
 CREATE TABLE EMPLEADOS(
     id NUMBER PRIMARY KEY,
     nombre VARCHAR2(100),
     id_cargo NUMBER,
     FOREIGN KEY (id_cargo) REFERENCES CARGOS(id)
 );
-
 --Como insertar datos (data)
 INSERT INTO CARGOS (id, nombre) VALUES (1, 'Administrador');
 INSERT INTO CARGOS (id, nombre) VALUES (2, 'Cajero');
@@ -65,3 +63,19 @@ INSERT INTO EMPLEADOS_LOCALES (id_empleado, id_local) VALUES (5, 3);
 INSERT INTO EMPLEADOS_LOCALES (id_empleado, id_local) VALUES (5, 4);
 INSERT INTO EMPLEADOS_LOCALES (id_empleado, id_local) VALUES (5, 5);
 COMMIT;
+
+
+
+
+
+
+
+--CODIGO QUE DEBO USAR SIEMPRE
+ALTER SESSION SET "_ORACLE_SCRIPT"=TRUE;
+CREATE USER user_biblioteca IDENTIFIED BY "mypassword123"
+DEFAULT TABLESPACE "USERS"
+TEMPORARY TABLESPACE "TEMP";
+ALTER USER user_biblioteca QUOTA UNLIMITED ON USERS;
+GRANT CREATE SESSION TO user_biblioteca;
+GRANT "RESOURCE" TO user_biblioteca;
+ALTER USER user_biblioteca DEFAULT ROLE "RESOURCE";
